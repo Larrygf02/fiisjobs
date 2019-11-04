@@ -1,0 +1,24 @@
+<html>
+<head>
+	<title>Vista Empresa</title>
+	 <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h2>LISTA DE ALUMNOS</h2>
+		{% if ultimos_alumnos %}
+			<ul class="list-group">
+				{% for alumno in ultimos_alumnos %}
+					<li class="list-group-item"><a href="/empresa/{{ alumno.id}}/">{{ alumno.nombre }} {{alumno.apellidos}}</a></li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>No hay alumnos</p>
+		{% endif %}
+	</div>
+</body>
+</html>

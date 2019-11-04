@@ -1,0 +1,107 @@
+{% load staticfiles %}
+
+
+<html>
+<head>
+	<title>Vista Empresa</title>
+	 <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<!--<link rel="stylesheet" id="compiled.css-css" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled.min.css?ver=4.3.2" type="text/css" media="all">-->
+  <link rel="stylesheet" type="text/css" href='{% static  "css/base.css" %}'/>
+</head>
+<body>
+	
+	<div class="container">
+			<div class="card testimonial-card">
+    <!--Bacground color-->
+    <div class="card-up default-color-dark">
+    </div>
+
+    {% if alumno.foto %}
+    <div class="avatar"><img src="{{alumno.foto.url}}" class="rounded-circle img-responsive" alt="">
+    </div>
+    {% endif %}
+
+    <div class="card-block">
+        <!--Name-->
+        <h4 class="card-title">{{ alumno.nombre }} {{alumno.apellidos}}</h4>
+        {% if edad != 0 %}
+        <h6 class="card-subtitle">{{ edad }} años</h6>
+        {% endif %}
+        <hr>
+        <div class="row">
+	        <div class="col-md-4">
+	        	<div class="colum-title">Nacionalidad</div>
+	        	<div class="colum-dato">{{ alumno.nacionalidad }}</div>
+	        </div>
+	        <div class="col-md-4">
+	        	<div class="colum-title">Estado Civil</div>
+	        	<div class="colum-dato">{{alumno.get_estado_civil_display }}</div>
+	        </div>
+	        <div class="col-md-4">
+	        	<div class="colum-title">Documento</div>
+	        	<div class="colum-dato">{{ alumno.dni }}</div>
+	        </div>
+        </div>
+    </div>
+
+</div>
+<!--/.Card-->
+			<div class="card">
+				<div class="card-header">
+					<strong>Datos del contacto</strong>
+				</div>
+				<div class="card-block">
+					DNI : {{ alumno.dni }}<br>
+					TELEFONO : {{ alumno.telefono }}<br>
+					DIRECCION : {{ alumno.direccion }}<br>
+				</div>
+			</div>
+			
+				{% if lista_habilidades %}
+			<div class="card">
+				<div class="card-header">
+					<strong>Conocimientos</strong>
+				</div>
+					<div class="list-group">
+					{% for habilidades in lista_habilidades %}
+					<div class="list-group-item flex-column align-items-start">
+					    <div class="d-flex w-100 justify-content-between">
+					    	<h6 class="mb-1">{{ habilidades.habilidad }}</h6>
+					    </div>
+					    	<p class="mb-1">Nivel:</strong>  {{habilidades.get_nivel_display }}.</p>
+						    <p class="mb-1"><strong>  Descripcion:</strong>  {{habilidades.descripcion}}</p>
+				    </div>
+	 				{% endfor %}
+ 				</div>	
+			</div>
+ 				{% endif %}
+
+			<div class="card">
+				<div class="card-header">
+					<strong>Estudios</strong>
+				</div>
+				{% if estudios %}
+				<div class="list-group">
+					{% for estudio in estudios %}
+					<div class="list-group-item flex-column align-items-start">
+						<div class="d-flex w-100 justify-content-between">
+							<h6 class="mb-1">{{ estudio.titulo }}</h6>
+							<small>{{ estudio.inicio }} - {{estudio.fin }}</small>
+						</div>
+						<p class="mb-1"><strong>{{ estudio.get_tipoDeEstudio_display }} - {{ estudio.get_estado_display}}</strong></p>
+					</div>
+					{% endfor %}
+				</div>
+				{% else %}
+				<div class="card-block">
+					<strong>No ha registrado Estudios</strong>
+				</div>
+				{% endif %}					
+	</div>
+</body>
+</html>

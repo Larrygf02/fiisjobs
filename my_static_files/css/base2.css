@@ -1,0 +1,21 @@
+.testimonial-card .avatar{
+	border-radius: 50%;
+	width: 120px;
+	margin: -65px auto 0;
+	border: 5px solid #fff;
+	background: #fff;
+}
+.default-color-dark{
+	background-color: #00695c!important;
+}
+.testimonial-card .card-up{
+	overflow: hidden;
+	height: 120px;
+}
+.testimonial-card .avatar{
+	overflow: hidden;
+	height: 120px;	
+}
+.testimonial-card .card-block{
+	text-align: center;
+}

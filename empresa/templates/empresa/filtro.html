@@ -1,0 +1,15 @@
+{% block content %}
+	<form action="" method="get">
+		<!--{{ filter.form.as_p }}-->
+		{{ habilidad.form.as_p }}
+		<input type="submit"/>
+	</form>
+	<!--{% for obj in filter.qs %}
+		{{ obj.nombre }}<br>
+	{% endfor %}-->
+
+	{% for obj2 in habilidad.qs %}
+		{{ obj2.alumno }}<br>
+	{% endfor %}
+
+{% endblock %}
